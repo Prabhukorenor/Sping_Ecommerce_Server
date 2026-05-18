@@ -1,0 +1,148 @@
+Step-1:
+GET:http://localhost:8080/getallproducts
+
+Step-2:
+POST:http://localhost:8080/addproduct
+{
+    "name":"Iphone 15",
+    "price":80000.00,
+    "category":"Electronics",
+    "subcategory":"Mobile",
+    "description":"Apple iPhone 15 with A16 chip",
+    "imageUrl":"https://example.com/iphone.jpg"
+}
+
+{
+    "name":"HP Pavillion",
+    "price":40000.00,
+    "category":"Electronics",
+    "subcategory":"Laptop",
+    "description":"HP Laptop with 512 SSD intel i9",
+    "imageUrl":"https://example.com/laptop.jpg"
+}
+
+{
+    "name":"Air 1 joradan shoes",
+    "price":25000.00,
+    "category":"Footware",
+    "subcategory":"Footware",
+    "description":"Best quality and for casual",
+  }
+  
+  
+  
+<================Ecommerce Steps=======================>
+  Step-1)|=>register As Admin
+  POST:http://localhost:8080/api/auth/register
+  {
+  "email": "admin@gmail.com",
+  "password": "admin",
+  }   // Registration Successfully (Admin).
+
+ ====>Register as USER
+  POST:http://localhost:8080/api/auth/register
+  {
+  "email": "pooja@gmail.com",
+  "password": "pooja",
+  }  //Registration Successfully (USER).
+  
+Step2)|===>Login as Admin
+POST:http://localhost:8080/api/auth/login
+Admin token-> "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlIjoiUk9MRV9VU0VSIiwi
+ aWF0IjoxNzc3MDA3ODE5LCJleHAiOjE3NzcwMTE0MTl9.Uv5q5nqw_qEprqNkvHVPWpv3QzDT3WP6IiNEKNXWqiI",
+  {
+  "email": "admin@gmail.com",
+  "password": "admin",
+  } 
+  
+ ===>Login as USER
+  POST:http://localhost:8080/api/auth/login
+   {
+  "email": "pooja@gmail.com",
+  "password": "pooja",
+  } 
+USER Token:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwb29qYUBnbWFpbC5jb20iLCJyb2xlIjoiUk9MRV9VU0VSIiwiaWF0IjoxNzc3MDA5OTgwLCJleHAiOjE3NzcwMTM1ODB9.4Vpk8Z19FYt6IH14vZ067x7gWFlYCZAFObLt1YRTWDA
+"role": "USER"
+
+Step-3)Adding new Product By ADMIN 
+POST:http://localhost:8080/api/products
+{
+    "name":"Iphone 15",
+    "price":80000.00,
+    "category":"Electronics",
+    "subcategory":"Mobile",
+    "description":"Apple iPhone 15 with A16 chip",
+    "imageUrl":"https://example.com/iphone.jpg"
+}   //product added successfully by admin.
+
+Step-4) Now USER try to add product after login
+POST:http://localhost:8080/api/products
+{
+    "name":"HP Pavillion",
+    "price":40000.00,
+    "category":"Electronics",
+    "subcategory":"Laptop",
+    "description":"HP Laptop with 512 SSD intel i9",
+    "imageUrl":"https://example.com/laptop.jpg"
+} // 403 Forbidden (User Don't have any access to add without admin approvel.
+
+Step-5)Now User has to ask permission to access from admin
+POST:http://localhost:8080/api/seller/request
+//Seller request sent to admin
+
+Step-6)To Approve Seller request login to admin and use below endpoint
+POST:http://localhost:8080/approve/2
+//Seller role approved successfully.....
+
+Step-7)Now User gets Approvel from Admin and now User can add product.
+POST:http://localhost:8080/api/products
+{
+    "name":"HP Pavillion",
+    "price":40000.00,
+    "category":"Electronics",
+    "subcategory":"Laptop",
+    "description":"HP Laptop with 512 SSD intel i9",
+    "imageUrl":"https://example.com/laptop.jpg"
+} //Product added successfully becz,now user has access to add product
+
+{
+    "name":"Ramymon T-shirt",
+    "price":2000.00,
+    "category":"Cloths",
+    "subcategory":"Shirt",
+    "description":"Good febric",
+    "imageUrl":"https://example.com/laptop.jpg"
+}  //Product added successfully becz,now user has access to add product
+
+Step-8) New Registration as USER
+POST:http://localhost:8080/api/auth/register
+{
+  "email": "rohit@gmail.com",
+  "password": "rohit"
+  }  //Registration Successfully(USER)
+  
+ ===>Now Login the User(rohit)
+ {
+  "email": "rohit@gmail.com",
+  "password": "rohit"
+ } 
+ 
+  USER Token: eyJhbGciOiJIUzI1NiJ9.
+  eyJzdWIiOiJyb2hpdEBnbWFpbC5jb20iLCJyb2xlIjoiUk9MRV9VU0VSIiwiaWF0IjoxNzc3MDEzMTEyLCJleHAiOjE3NzcwMTY3MTJ9.hf6A0m275729nwRAa1lruIzUjhtbH1Wu1snuaEA3kIM,
+  "role": "USER"
+  
+  Step-9)Add to cart by rohit(User)
+  POST:http://localhost:8080/api/cart/add/1
+  //Product added to cart
+  
+   POST:http://localhost:8080/api/cart/add/2
+  //Product added to cart
+  
+  Step-10)Cart product quantity increased
+   POST:http://localhost:8080/api/cart/increase/1
+    POST:http://localhost:8080/api/cart/increase/2
+     qty inscread
+     
+   Step-11)
+  
+  
